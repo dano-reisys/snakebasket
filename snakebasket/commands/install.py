@@ -249,7 +249,7 @@ class RecursiveRequirementSet(RequirementSet):
                 self.unnamed_requirements.append(install_req)
             return True
         satisfied_by = self.install_req_checker.get_available_substitute(install_req)
-        if satisfied_by is not None:
+        if satisfied_by is not None and not self.ignore_installed:
             logger.notify("Package %s already satisfied by %s" % (name, satisfied_by.__repr__()))
         else:
             self.requirements[name] = install_req
